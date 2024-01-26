@@ -1,0 +1,14 @@
+﻿
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            @*@Html.PartialViewAction("Student")*@
+            @{ Html.RenderAction("Student", "Student"); }
+        </div>
+        <div class="col-md-6">
+            @*@Html.Partial("SubjectData")*@
+            @{ Html.RenderAction("SubjectData", "Student"); }
+        </div>
+    </div>
+</div

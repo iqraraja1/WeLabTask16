@@ -1,0 +1,57 @@
+﻿@model IEnumerable<WeLabTask16.Models.Student>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+
+
+
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.rollno)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.Subject)
+        </th>
+        <th>
+            @Html.DisplayName("Mark")
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        @Html.HiddenFor(e => item.rollno)
+        @Html.HiddenFor(e => item.Name)
+        @Html.HiddenFor(e =>item.Subject)
+        @Html.HiddenFor(e => item.isPresent, new { id = item.rollno, Value = "P" })
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.rollno)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Subject)
+            </td>
+            <td>
+                <button type="button" onclick="changeState('item.rollno')" class="btn btn-outline-success" id="btn_item.rollno">P</button>
+            </td>
+        </tr>
+    }
+    <input type="submit" />
+</table>
+<script>
+    const changeState = (id) => {
+        let ele = document.getElementById(`btn_${id}`);
+        let val = ele.innerHTML == "P" ? "A" : "P";
+        ele.innerHTML = val;
+        document.getElementById(`${id}`).value = val;
+    }
+</script>

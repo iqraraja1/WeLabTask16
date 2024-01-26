@@ -1,0 +1,83 @@
+﻿@model WeLabTask16.Models.Student
+
+@{
+    //ViewBag.Title = "Student";
+    List<SelectListItem> clas = new List<SelectListItem>
+    {
+        new SelectListItem{Text="11",Value="10" },
+        new SelectListItem{Text="12",Value="12" },
+        new SelectListItem{Text="3",Value="9" },
+        new SelectListItem{Text="4",Value="5" },
+
+    };
+
+    List<SelectListItem> subj = new List<SelectListItem>
+  {
+      new SelectListItem{Text="English",Value="English" },
+      new SelectListItem{Text="Maths",Value="Math" },
+      new SelectListItem{Text="Science",Value="Science" },
+      new SelectListItem{Text="PS",Value="PS" },
+
+  };
+}
+
+<h2>Student</h2>
+
+
+@using (Html.BeginForm( "SaveStudent","Student",FormMethod.Post)) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>Student</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model=>model.rollno)
+
+        @*<div class="form-group">
+            @Html.LabelFor(model => model.rollno, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.rollno, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.rollno, "", new { @class = "text-danger" })
+            </div>
+        </div>*@
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Class, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.Class,clas, new {htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Class, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Subject, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.Subject,subj, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Subject, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
